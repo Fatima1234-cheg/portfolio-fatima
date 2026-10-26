@@ -29,7 +29,7 @@
         </p>
         
         <div class="footer__social">
-          <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://github.com/Fatima1234-cheg" target="_blank" rel="noopener">GitHub</a>
           <span class="footer__dot">•</span>
           <a href="https://www.linkedin.com/in/fatima-chegdani-44b840274/" target="_blank" rel="noopener">LinkedIn</a>
         </div>

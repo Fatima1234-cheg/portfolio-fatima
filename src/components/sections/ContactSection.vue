@@ -23,7 +23,7 @@
         <div class="contact__info-card">
           <div class="info-header">
             <h3 class="info-name">Fatima Chegdani</h3>
-            <span class="info-role">Développeuse Full Stack </span>
+            <span class="info-role">Développeuse Full Stack</span>
           </div>
 
           <div class="info-list">
@@ -39,7 +39,7 @@
             </a>
 
             <!-- Téléphone -->
-            <a href="tel:+212600000000" class="info-item">
+            <a href="tel:+212763722243" class="info-item">
               <div class="info-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               </div>
@@ -61,9 +61,9 @@
             </div>
           </div>
 
-          <!-- Réseaux Sociaux (Style Light) -->
+          <!-- Réseaux Sociaux -->
           <div class="social-links">
-            <a href="https://github.com/ton-pseudo" target="_blank" class="social-btn" title="GitHub">
+            <a href="https://github.com/Fatima1234-cheg" target="_blank" class="social-btn" title="GitHub">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
             </a>
             <a href="https://www.linkedin.com/in/fatima-chegdani-44b840274/" target="_blank" class="social-btn" title="LinkedIn">
@@ -87,21 +87,19 @@
             </div>
             
             <div class="cv-image-wrapper">
-              <!-- ⚠️ REMPLACE "moncv.png" par le nom exact de ton image -->
+              <!-- ⚠️ REMPLACE "moncv.png" par le nom exact de ton image dans src/assets -->
               <img 
                 :src="cvImage" 
                 alt="CV Fatima Chegdani" 
                 class="cv-image" 
               />
-              
-              <!-- Overlay au survol pour télécharger -->
-              <div class="cv-overlay">
-                <a href="/mon-cv.pdf" target="_blank" class="btn-download">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                  Télécharger
-                </a>
-              </div>
             </div>
+
+            <!-- Bouton de téléchargement visible sous l'image -->
+            <a href="/mon-cv.pdf" target="_blank" class="cv-download-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              Télécharger le CV
+            </a>
           </div>
         </div>
 
@@ -122,7 +120,7 @@ const sectionRef = ref<HTMLElement>()
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@500;700&display=swap');
 
 /* =========================================
-   VARIABLES (LIGHT THEME - Comme l'ancien design)
+   VARIABLES (LIGHT THEME)
 ========================================= */
 $bg-color: #f8f9fc;
 $text-primary: #111827;
@@ -139,7 +137,6 @@ $border-color: #e2e8f0;
   font-family: 'Inter', system-ui, sans-serif;
   overflow: hidden;
 
-  /* Background Grid & Glow (Repris de ton ancien code) */
   .background {
     position: absolute;
     inset: 0;
@@ -191,7 +188,6 @@ $border-color: #e2e8f0;
     z-index: 1;
   }
 
-  /* En-tête de section (Light) */
   .section-header {
     margin-bottom: 60px;
     text-align: center;
@@ -224,7 +220,6 @@ $border-color: #e2e8f0;
     }
   }
 
-  /* Grille principale */
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -237,7 +232,7 @@ $border-color: #e2e8f0;
   }
 
   /* =========================================
-     CARTE INFOS (Gauche - Light)
+     CARTE INFOS (Gauche)
   ========================================= */
   &__info-card {
     background: #ffffff;
@@ -328,7 +323,6 @@ $border-color: #e2e8f0;
     color: $text-primary;
   }
 
-  /* Réseaux Sociaux */
   .social-links {
     display: flex;
     gap: 12px;
@@ -366,7 +360,7 @@ $border-color: #e2e8f0;
     position: relative;
     display: flex;
     justify-content: center;
-    perspective: 1000px; /* Pour l'effet 3D */
+    perspective: 1000px;
   }
 
   .cv-badge {
@@ -394,19 +388,20 @@ $border-color: #e2e8f0;
     }
   }
 
-  /* La carte inclinée */
   .cv-card {
     position: relative;
     width: 100%;
-    max-width: 420px;
+    max-width: 450px;
     background: #ffffff;
     border: 1px solid rgba(148, 163, 184, 0.25);
     border-radius: 16px;
     padding: 20px;
     box-shadow: 0 35px 80px rgba(15, 23, 42, 0.1);
-    transform: rotate(-2deg); /* L'effet incliné de ton About */
+    transform: rotate(-2deg);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
 
     &:hover {
       transform: rotate(0deg) translateY(-5px);
@@ -444,7 +439,7 @@ $border-color: #e2e8f0;
   .cv-image-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1.3; /* Format A4 */
+    aspect-ratio: 1 / 1.3;
     border-radius: 8px;
     overflow: hidden;
     background: #f1f5f9;
@@ -454,55 +449,35 @@ $border-color: #e2e8f0;
   .cv-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* ⚠️ C'est ici que l'image s'affiche en entier */
+    object-fit: contain; 
     object-position: top center;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    background-color: #ffffff; /* Fond blanc pour faire ressortir le document */
   }
 
-  /* Overlay au survol */
-  .cv-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(4px);
+  /* Bouton de téléchargement sous le CV */
+  .cv-download-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 2;
-  }
-
-  .cv-image-wrapper:hover .cv-overlay {
-    opacity: 1;
-  }
-
-  .cv-image-wrapper:hover .cv-image {
-    transform: scale(1.02);
-  }
-
-  .btn-download {
-    display: inline-flex;
-    align-items: center;
     gap: 10px;
-    padding: 14px 28px;
-    background: #111827; /* Bouton noir comme tes boutons principaux */
+    width: 100%;
+    margin-top: 16px;
+    padding: 14px;
+    background: #111827;
     color: white;
     text-decoration: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
     font-weight: 700;
     border-radius: 8px;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
-    transform: translateY(10px);
 
     svg { width: 18px; height: 18px; }
 
     &:hover {
       background: $primary;
-      transform: translateY(0);
-      box-shadow: 0 15px 25px rgba(99, 102, 241, 0.3);
+      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
     }
   }
 
@@ -515,9 +490,6 @@ $border-color: #e2e8f0;
       transform: rotate(0deg);
       max-width: 100%;
       margin-top: 20px;
-    }
-    .cv-image-wrapper {
-      aspect-ratio: 1 / 1.3;
     }
   }
 }
