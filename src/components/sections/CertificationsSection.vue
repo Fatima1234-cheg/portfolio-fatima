@@ -30,8 +30,9 @@
 
       <!-- Liste des Certifications -->
       <div class="certifications__grid">
+        <!-- MODIFICATION ICI : on utilise sortedCertifications au lieu de certifications -->
         <div 
-          v-for="(cert, index) in certifications" 
+          v-for="(cert, index) in sortedCertifications" 
           :key="cert.id"
           class="cert-row"
           :class="{ 'cert-row--featured': cert.featured, 'cert-row--clickable': cert.image }"
@@ -173,7 +174,7 @@ const certifications = ref([
     id: 1,
     name: 'Advanced SQL',
     issuer: '365 Data Science',
-    year: '2024',
+    year: '2026',
     featured: true,
     link: 'https://lnkd.in/p/ep88Scw8' 
   },
@@ -199,7 +200,7 @@ const certifications = ref([
     issuer: 'Cisco Networking Academy',
     year: 'Nov 2024',
     featured: false,
-    image: '/images/certifications/python-1.png' // Plus de bouton "Voir", la ligne est cliquable
+    image: '/images/certifications/python-1.png'
   },
   {
     id: 5,
@@ -207,9 +208,34 @@ const certifications = ref([
     issuer: 'Cisco Networking Academy',
     year: 'Dec 2024',
     featured: false,
-    image: '/images/certifications/python-2.png' // Plus de bouton "Voir", la ligne est cliquable
+    image: '/images/certifications/python-2.png'
   }
 ])
+
+// --- AJOUT : TRI AUTOMATIQUE DES CERTIFICATIONS ---
+const sortedCertifications = computed(() => {
+  return [...certifications.value].sort((a, b) => {
+    // Fonction pour extraire l'année et le mois
+    const getDateValue = (dateStr: string) => {
+      const yearMatch = dateStr.match(/\d{4}/)
+      const year = yearMatch ? parseInt(yearMatch[0], 10) : 0
+
+      const months: Record<string, number> = { 
+        Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, 
+        Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 
+      }
+      const monthMatch = dateStr.match(/[A-Za-z]{3}/)
+      // Si pas de mois (ex: "2026"), on met 12 pour le placer en fin d'année
+      const month = monthMatch ? (months[monthMatch[0]] || 12) : 12 
+
+      // On combine pour comparer (ex: 202612 > 202511)
+      return year * 100 + month
+    }
+
+    // Ordre décroissant (Plus récent en premier)
+    return getDateValue(b.year) - getDateValue(a.year)
+  })
+})
 
 const softSkills = computed(() => {
   const skills: Record<string, string[]> = {
@@ -373,11 +399,10 @@ $border-color: rgba(255, 255, 255, 0.08);
       border-bottom: none;
     }
 
-    /* ⬇️ AJOUT : Rendre la ligne cliquable visuellement pour les images (Python) ⬇️ */
     &--clickable {
       cursor: pointer;
       &:hover {
-        background: rgba(99, 102, 241, 0.05); /* Petit halo au survol */
+        background: rgba(99, 102, 241, 0.05);
       }
     }
 
