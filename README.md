@@ -27,7 +27,6 @@ Portfolio professionnel moderne et interactif, développé avec Vue.js 3, TypeSc
 - [Démarrage rapide](#démarrage-rapide)
 - [Structure du projet](#structure-du-projet)
 - [Personnalisation](#personnalisation)
-- [Licence](#licence)
 - [Contact](#contact)
 
 ---
