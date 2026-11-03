@@ -174,7 +174,6 @@ Le contenu est centralisé dans le store Pinia `src/stores/portfolio.ts` : proje
     <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
   </a>
 </p>
----
 
 <div align="center">
 
