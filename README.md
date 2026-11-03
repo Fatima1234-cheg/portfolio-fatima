@@ -96,9 +96,7 @@ Le contenu du portfolio est géré dans le store Pinia (`src/stores/portfolio.ts
 - Compétences
 - Certifications
 
-## 📄 License
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](./LICENSE) pour plus de détails.
 
 ## 👩‍💻 Auteur
 
