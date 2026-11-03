@@ -164,11 +164,16 @@ Le contenu est centralisé dans le store Pinia `src/stores/portfolio.ts` : proje
 **Fatima Chegdani**
 
 <p>
-  <a href="https://fatima1234-cheg.github.io/portfolio-fatima/"><img src="https://img.shields.io/badge/Portfolio-6366F1?style=flat-square&logo=googlechrome&logoColor=white" alt="Portfolio" /></a>
-  <a href="www.linkedin.com/in/fatima-chegdani-44b840274"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-  <a href="https://github.com/fatima1234-cheg"><img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" /></a>
+  <a href="https://fatima1234-cheg.github.io/portfolio-fatima/">
+    <img src="https://img.shields.io/badge/Portfolio-6366F1?style=flat-square&logo=googlechrome&logoColor=white" alt="Portfolio" />
+  </a>
+  <a href="https://www.linkedin.com/in/fatima-chegdani-44b840274/">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="https://github.com/fatima1234-cheg">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
+  </a>
 </p>
-
 ---
 
 <div align="center">
