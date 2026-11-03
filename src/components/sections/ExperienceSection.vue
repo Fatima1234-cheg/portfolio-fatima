@@ -9,7 +9,7 @@
         </h2>
         <p class="section-header__description">
           {{ currentLanguage === 'fr' 
-            ? 'Mon parcours professionnel et mes stages en développement Full Stack, UI/UX et Data.'
+            ? 'Mon parcours professionnel et mes stages en développement Full Stack, UI/UX.'
             : 'My professional journey and internships in Full Stack, UI/UX and Data development.'
           }}
         </p>
@@ -187,13 +187,13 @@ const education = computed(() => [
     degree: currentLanguage.value === 'fr' ? 'Cycle d\'ingénieur — Génie Informatique & IA' : 'Engineering Degree — Computer Science & AI',
     school: 'ENSA Safi',
     description: currentLanguage.value === 'fr'
-      ? '4ᵉ année du cycle d\'ingénieur en Génie Informatique et Intelligence Artificielle.'
-      : 'Fourth year of the engineering program in Computer Science and Artificial Intelligence.'
+      ? '3ᵉ année du cycle d\'ingénieur en Génie Informatique et Intelligence Artificielle.'
+      : 'Third year of the engineering program in Computer Science and Artificial Intelligence.'
   },
   {
     id: 2,
     year: '2024 — 2025',
-    degree: currentLanguage.value === 'fr' ? 'Master Ingénierie Digitale pour les Métiers de la Santé' : 'Master’s in Digital Engineering for Healthcare',
+    degree: currentLanguage.value === 'fr' ? 'Master 1 — Ingénierie Digitale pour les Métiers de la Santé' : 'Master’s in Digital Engineering for Healthcare',
     school: 'ENSAM Casablanca',
     description: currentLanguage.value === 'fr'
       ? 'Formation spécialisée dans l\'ingénierie digitale appliquée au secteur de la santé.'
