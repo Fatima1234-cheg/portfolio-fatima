@@ -50,7 +50,9 @@
           <div class="cert-content">
             <div class="cert-header">
               <h3 class="cert-title">{{ cert.name }}</h3>
-              <span v-if="cert.featured" class="cert-badge">ADVANCED</span>
+              <span v-if="cert.featured" class="cert-badge">
+                {{ currentLanguage === 'fr' ? 'AVANCÉ' : 'ADVANCED' }}
+              </span>
             </div>
             <div class="cert-meta">
               <span class="cert-issuer">{{ cert.issuer }}</span>
@@ -68,7 +70,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               </svg>
-              Vérifier
+              {{ currentLanguage === 'fr' ? 'Vérifier' : 'Verify' }}
             </button>
           </div>
         </div>
@@ -79,26 +81,26 @@
         <div class="extras-card">
           <div class="extras-header">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
-            <h4>Langues</h4>
+            <h4>{{ currentLanguage === 'fr' ? 'Langues' : 'Languages' }}</h4>
           </div>
           <div class="lang-list">
             <div class="lang-item">
               <div class="lang-info">
-                <span class="lang-name">Arabe</span>
-                <span class="lang-level">NATIF</span>
+                <span class="lang-name">{{ currentLanguage === 'fr' ? 'Arabe' : 'Arabic' }}</span>
+                <span class="lang-level">{{ currentLanguage === 'fr' ? 'NATIF' : 'NATIVE' }}</span>
               </div>
               <div class="lang-bar"><div class="lang-fill" style="width: 100%"></div></div>
             </div>
             <div class="lang-item">
               <div class="lang-info">
-                <span class="lang-name">Français</span>
+                <span class="lang-name">{{ currentLanguage === 'fr' ? 'Français' : 'French' }}</span>
                 <span class="lang-level">B2</span>
               </div>
               <div class="lang-bar"><div class="lang-fill" style="width: 75%"></div></div>
             </div>
             <div class="lang-item">
               <div class="lang-info">
-                <span class="lang-name">Anglais</span>
+                <span class="lang-name">{{ currentLanguage === 'fr' ? 'Anglais' : 'English' }}</span>
                 <span class="lang-level">B2</span>
               </div>
               <div class="lang-bar"><div class="lang-fill" style="width: 75%"></div></div>
@@ -109,7 +111,7 @@
         <div class="extras-card">
           <div class="extras-header">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <h4>Soft Skills</h4>
+            <h4>{{ currentLanguage === 'fr' ? 'Compétences humaines' : 'Soft Skills' }}</h4>
           </div>
           <div class="soft-tags">
             <span v-for="skill in softSkills" :key="skill" class="soft-tag">
@@ -140,8 +142,10 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { usePortfolioStore } from '@/stores/portfolio'
 
-const currentLanguage = ref('fr')
+const store = usePortfolioStore()
+const currentLanguage = computed(() => store.currentLanguage)
 
 // --- MODAL & LINK LOGIC ---
 const modalOpen = ref(false)

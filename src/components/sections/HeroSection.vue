@@ -17,29 +17,37 @@
           <!-- Badge -->
           <div class="hero__badge" ref="badgeRef">
             <span class="hero__badge-dot"></span>
-            <span class="hero__badge-text">Disponible pour un stage PFE · 2026</span>
+            <span class="hero__badge-text">
+              {{ currentLanguage === 'fr' ? 'Disponible pour un stage PFE · 2026' : 'Available for a final-year internship · 2026' }}
+            </span>
           </div>
 
           <!-- Main Title -->
           <h1 class="hero__title" ref="titleRef">
-            J'apprends, je code,<br />
-            <span class="hero__title-gradient">je livre.</span><br />
-            En boucle.
+            {{ currentLanguage === 'fr' ? "J'apprends, je code," : 'I learn, I code,' }}<br />
+            <span class="hero__title-gradient">{{ currentLanguage === 'fr' ? 'je livre.' : 'I deliver.' }}</span><br />
+            {{ currentLanguage === 'fr' ? 'En boucle.' : 'Repeat.' }}
           </h1>
 
           <!-- Description -->
           <div class="hero__description" ref="descRef">
             <p>
-              Je suis <strong>Fatima Chegdani</strong>, étudiante en 3ᵉ année du cycle ingénieur en Génie Informatique  à l'ENSA Safi.
+              {{ currentLanguage === 'fr' ? 'Je suis' : 'I am' }}
+              <strong>Fatima Chegdani</strong>{{ currentLanguage === 'fr'
+                ? ", étudiante en 3ᵉ année du cycle ingénieur en Génie Informatique à l'ENSA Safi."
+                : ', a third-year Computer Engineering student at ENSA Safi.' }}
             </p>
             <p>
-              Développeuse <strong>Full Stack Web</strong>, je conçois des applications modernes en travaillant sur toute la chaîne : interface utilisateur, API, logique métier et bases de données.
+              {{ currentLanguage === 'fr' ? 'Développeuse' : 'As a' }}
+              <strong>Full Stack Web</strong>{{ currentLanguage === 'fr'
+                ? ', je conçois des applications modernes en travaillant sur toute la chaîne : interface utilisateur, API, logique métier et bases de données.'
+                : ' developer, I build modern applications across the full stack: user interfaces, APIs, business logic, and databases.' }}
             </p>
           </div>
 
           <!-- Typewriter / Spécialités -->
           <div class="hero__specialties" ref="ctaRef">
-            <span class="hero__specialties-label">SPÉCIALITÉS :</span>
+            <span class="hero__specialties-label">{{ currentLanguage === 'fr' ? 'SPÉCIALITÉS :' : 'SPECIALTIES:' }}</span>
             <span class="hero__specialties-text" ref="roleTextRef"></span>
             <span class="hero__specialties-cursor"></span>
           </div>
@@ -49,14 +57,14 @@
             <div class="hero__info-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               <div>
-                <span class="info-label">Localisation</span>
-                <span class="info-value">Casablanca, Maroc</span>
+                <span class="info-label">{{ currentLanguage === 'fr' ? 'Localisation' : 'Location' }}</span>
+                <span class="info-value">{{ currentLanguage === 'fr' ? 'Casablanca, Maroc' : 'Casablanca, Morocco' }}</span>
               </div>
             </div>
             <div class="hero__info-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
               <div>
-                <span class="info-label">Formation</span>
+                <span class="info-label">{{ currentLanguage === 'fr' ? 'Formation' : 'Education' }}</span>
                 <span class="info-value">ENSA Safi · GIIA</span>
               </div>
             </div>
@@ -89,7 +97,7 @@
 
             <div class="id-card__image-wrap">
               <div class="id-card__image-bg"></div>
-              <img src="/src/assets/photo.jpg" alt="Fatima Chegdani" class="id-card__image" />
+              <img :src="heroImage" alt="Fatima Chegdani" class="id-card__image" />
               <div class="id-card__placeholder">FC</div>
             </div>
 
@@ -100,7 +108,7 @@
                   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                 </span>
               </div>
-              <p class="id-card__role">Full Stack Web Developer </p>
+              <p class="id-card__role">{{ currentLanguage === 'fr' ? 'Développeuse Full Stack Web' : 'Full Stack Web Developer' }}</p>
               
               <div class="id-card__tags">
                  <span>React</span>
@@ -131,11 +139,13 @@
         <div class="section-header">
           <span class="section-header__subtitle">01.5</span>
           <h2 class="section-header__title">
-            Du développement <br />
-            <span>à la mise en production.</span>
+          {{ currentLanguage === 'fr' ? 'Du développement' : 'From development' }} <br />
+          <span>{{ currentLanguage === 'fr' ? 'à la mise en production.' : 'to production.' }}</span>
           </h2>
           <p class="section-header__description">
-            Une méthodologie structurée pour transformer une idée en un produit fiable, testé et déployé.
+          {{ currentLanguage === 'fr'
+            ? 'Une méthodologie structurée pour transformer une idée en un produit fiable, testé et déployé.'
+            : 'A structured methodology for turning an idea into a reliable, tested, and deployed product.' }}
           </p>
         </div>
 
@@ -147,9 +157,11 @@
             <div class="process-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
             </div>
-            <h3 class="process-card__title">Conception & Design</h3>
+            <h3 class="process-card__title">{{ currentLanguage === 'fr' ? 'Conception & Design' : 'Planning & Design' }}</h3>
             <p class="process-card__text">
-              Analyse des besoins métier, maquettage UI/UX (Figma) et modélisation de l'architecture des données.
+              {{ currentLanguage === 'fr'
+                ? 'Analyse des besoins métier, maquettage UI/UX (Figma) et modélisation de l’architecture des données.'
+                : 'Analyzing business needs, creating UI/UX mockups in Figma, and modeling the data architecture.' }}
             </p>
           </div>
 
@@ -159,9 +171,11 @@
             <div class="process-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </div>
-            <h3 class="process-card__title">Développement & API</h3>
+            <h3 class="process-card__title">{{ currentLanguage === 'fr' ? 'Développement & API' : 'Development & APIs' }}</h3>
             <p class="process-card__text">
-              Codage du front-end, du back-end et des API REST. Application des principes du Clean Code et de l'architecture MVC.
+              {{ currentLanguage === 'fr'
+                ? 'Développement du front-end, du back-end et des API REST. Application des principes du Clean Code et de l’architecture MVC.'
+                : 'Building the frontend, backend, and REST APIs while applying Clean Code principles and MVC architecture.' }}
             </p>
           </div>
 
@@ -171,9 +185,11 @@
             <div class="process-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             </div>
-            <h3 class="process-card__title">Tests & Qualité</h3>
+            <h3 class="process-card__title">{{ currentLanguage === 'fr' ? 'Tests & Qualité' : 'Testing & Quality' }}</h3>
             <p class="process-card__text">
-              Rédaction de tests d'intégration, validation des fonctionnalités et correction des bugs pour garantir la fiabilité.
+              {{ currentLanguage === 'fr'
+                ? 'Rédaction de tests d’intégration, validation des fonctionnalités et correction des bugs pour garantir la fiabilité.'
+                : 'Writing integration tests, validating features, and fixing bugs to ensure reliability.' }}
             </p>
           </div>
 
@@ -183,9 +199,11 @@
             <div class="process-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
             </div>
-            <h3 class="process-card__title">Déploiement & Suivi</h3>
+            <h3 class="process-card__title">{{ currentLanguage === 'fr' ? 'Déploiement & Suivi' : 'Deployment & Monitoring' }}</h3>
             <p class="process-card__text">
-              Mise en production, configuration des serveurs (CI/CD, Docker) et mise en place du monitoring pour le suivi.
+              {{ currentLanguage === 'fr'
+                ? 'Mise en production, configuration des serveurs (CI/CD, Docker) et mise en place du monitoring pour le suivi.'
+                : 'Deploying to production, configuring servers (CI/CD, Docker), and setting up monitoring.' }}
             </p>
           </div>
         </div>
@@ -195,8 +213,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
 import gsap from 'gsap'
+import { usePortfolioStore } from '@/stores/portfolio'
+import heroImage from '@/assets/image.png'
+
+const store = usePortfolioStore()
+const currentLanguage = computed(() => store.currentLanguage)
 
 // --- 3D TILT EFFECT LOGIC ---
 const visualRef = ref<HTMLElement>()
@@ -234,14 +257,16 @@ const resetTilt = () => {
 
 // --- TYPEWRITER EFFECT ---
 const roleTextRef = ref<HTMLElement>()
-const roles = ['Full Stack Web', 'Développement Mobile', 'API & Backend']
+const roles = computed(() => currentLanguage.value === 'fr'
+  ? ['Développement Full Stack', 'Développement Mobile', 'API & Backend']
+  : ['Full Stack Development', 'Mobile Development', 'APIs & Backend'])
 let roleIndex = 0
 let charIndex = 0
 let isDeleting = false
 let typeTimeout: number | null = null
 
 const typeEffect = () => {
-  const currentRole = roles[roleIndex]
+  const currentRole = roles.value[roleIndex]
   
   if (roleTextRef.value) {
     if (isDeleting) {
@@ -260,12 +285,21 @@ const typeEffect = () => {
     isDeleting = true
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false
-    roleIndex = (roleIndex + 1) % roles.length
+    roleIndex = (roleIndex + 1) % roles.value.length
     typeSpeed = 500
   }
 
   typeTimeout = window.setTimeout(typeEffect, typeSpeed)
 }
+
+watch(currentLanguage, () => {
+  if (typeTimeout) clearTimeout(typeTimeout)
+  roleIndex = 0
+  charIndex = 0
+  isDeleting = false
+  if (roleTextRef.value) roleTextRef.value.textContent = ''
+  typeEffect()
+})
 
 // --- ANIMATIONS ---
 const heroRef = ref<HTMLElement>()
@@ -277,7 +311,9 @@ const ctaRef = ref<HTMLElement>()
 const statsRef = ref<HTMLElement>()
 
 const initAnimations = () => {
-  const elements = [badgeRef.value, titleRef.value, descRef.value, ctaRef.value, statsRef.value].filter(Boolean)
+  if (!badgeRef.value || !titleRef.value || !descRef.value || !ctaRef.value || !statsRef.value || !visualRef.value) return
+
+  const elements = [badgeRef.value, titleRef.value, descRef.value, ctaRef.value, statsRef.value]
   
   gsap.set(elements, { opacity: 0, y: 30 })
   gsap.set(visualRef.value, { opacity: 0, x: 50, scale: 0.95 })

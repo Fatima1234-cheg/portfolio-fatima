@@ -5,10 +5,12 @@
       <div class="section-header">
         <span class="section-header__subtitle">04</span>
         <h2 class="section-header__title">
-          Compétences
+          {{ currentLanguage === 'fr' ? 'Compétences' : 'Skills' }}
         </h2>
         <p class="section-header__description">
-          Les technologies Full Stack, Mobile et les outils de gestion de projet.
+          {{ currentLanguage === 'fr'
+            ? 'Les technologies Full Stack, Mobile et les outils de gestion de projet.'
+            : 'Full Stack and mobile technologies, plus project management tools.' }}
         </p>
       </div>
 
@@ -51,11 +53,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { usePortfolioStore } from '@/stores/portfolio'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const store = usePortfolioStore()
+const currentLanguage = computed(() => store.currentLanguage)
 
 type SkillCategory = 'frontend' | 'backend' | 'database' | 'mobile' | 'tools'
 
@@ -71,6 +77,7 @@ const allSkills: Array<{ category: SkillCategory; name: string }> = [
   
   // Back-end
   { category: 'backend', name: 'Node.js' },
+   { category: 'backend', name: 'Spring Boot' },
   { category: 'backend', name: 'Laravel' },
   { category: 'backend', name: 'FastAPI' },
   { category: 'backend', name: 'Flask' },
@@ -82,12 +89,12 @@ const allSkills: Array<{ category: SkillCategory; name: string }> = [
   { category: 'database', name: 'MongoDB' },
   { category: 'database', name: 'MySQL' },
   { category: 'database', name: 'PostgreSQL' },
-  { category: 'database', name: 'Pandas' },
+
   
   // Mobile
   { category: 'mobile', name: 'Flutter' },
   { category: 'mobile', name: 'Dart' },
-  { category: 'mobile', name: 'React Native' },
+ 
   
   // Outils & Gestion
   { category: 'tools', name: 'Git' },
@@ -102,13 +109,13 @@ const allSkills: Array<{ category: SkillCategory; name: string }> = [
   { category: 'tools', name: 'Gantt' }
 ]
 
-const skillCategories: Array<{ key: SkillCategory; label: string }> = [
+const skillCategories = computed<Array<{ key: SkillCategory; label: string }>>(() => [
   { key: 'frontend', label: 'Front-end Web' },
   { key: 'backend', label: 'Back-end / API' },
-  { key: 'database', label: 'Bases de données' },
-  { key: 'mobile', label: 'Développement Mobile' },
-  { key: 'tools', label: 'Outils & Gestion' }
-]
+  { key: 'database', label: currentLanguage.value === 'fr' ? 'Bases de données' : 'Databases' },
+  { key: 'mobile', label: currentLanguage.value === 'fr' ? 'Développement Mobile' : 'Mobile Development' },
+  { key: 'tools', label: currentLanguage.value === 'fr' ? 'Outils & Gestion' : 'Tools & Management' }
+])
 
 const getSkillsByCategory = (category: SkillCategory) => {
   return allSkills.filter((skill) => skill.category === category)

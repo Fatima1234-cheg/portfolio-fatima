@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.GITHUB_ACTIONS === 'true' ? '/portfolio-fatima/' : '/',
   plugins: [
     vue({
       template: {
@@ -29,13 +30,12 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
-    minify: 'terser',
     cssMinify: true,
     rollupOptions: {
       output: {
         manualChunks: {
           'vendor': ['vue', 'vue-router', 'pinia'],
-          'animation': ['gsap', '@gsap/vue', 'lenis']
+          'animation': ['gsap', 'lenis']
         }
       }
     }

@@ -43,7 +43,7 @@
           class="navigation__toggle"
           @click="toggleMenu"
           :class="{ 'navigation__toggle--active': isMenuOpen }"
-          aria-label="Toggle menu"
+          :aria-label="currentLanguage === 'fr' ? 'Ouvrir le menu' : 'Open menu'"
         >
           <span></span>
           <span></span>
@@ -93,7 +93,6 @@ const isMenuOpen = ref(false)
 const activeSection = ref('hero')
 let ticking = false
 
-// ⚠️ C'EST ICI QUE L'ID A ÉTÉ CHANGÉ DE 'about' À 'hero' ⚠️
 const navItems = computed(() => [
   { id: 'hero', label: currentLanguage.value === 'fr' ? 'À Propos' : 'About', number: '01' },
   { id: 'experience', label: currentLanguage.value === 'fr' ? 'Expérience' : 'Experience', number: '02' },

@@ -119,23 +119,28 @@
 import { ref, computed, onMounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { usePortfolioStore } from '@/stores/portfolio'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const currentLanguage = ref('fr')
+const store = usePortfolioStore()
+const currentLanguage = computed(() => store.currentLanguage)
 
-// ⚠️ TES VRAIES DONNÉES D'EXPÉRIENCE
-const experiences = [
+const experiences = computed(() => [
   {
     id: 1,
     company: 'ARIMAY',
     location: 'France',
-    position: 'Stage Développeuse Front-End & UI/UX',
-    date: 'Juillet – Octobre 2025',
-    missions: [
+    position: currentLanguage.value === 'fr' ? 'Stage Développeuse Front-End & UI/UX' : 'Front-End & UI/UX Developer Intern',
+    date: currentLanguage.value === 'fr' ? 'Juillet – Octobre 2025' : 'July – October 2025',
+    missions: currentLanguage.value === 'fr' ? [
       'Conception des maquettes (UI/UX) et développement d’interfaces multiplateformes (Web, Desktop, Mobile) pour la plateforme IdeaToMarket (accompagnement des entrepreneurs).',
       'Intégration de l’interface statique puis développement de la partie dynamique avec des commits quotidiens via Git.',
       'Réalisation de tests d’intégration en collaboration avec l’équipe backend et travail en méthode Agile (Scrum).'
+    ] : [
+      'Designed UI/UX mockups and developed cross-platform web, desktop, and mobile interfaces for IdeaToMarket, a platform supporting entrepreneurs.',
+      'Integrated the static interface, then built its dynamic features with daily Git commits.',
+      'Performed integration testing with the backend team and worked using the Agile Scrum methodology.'
     ],
     technologies: ['Flutter', 'Git', 'GitHub', 'Scrum', 'Figma']
   },
@@ -143,13 +148,18 @@ const experiences = [
     id: 2,
     company: 'SRM-CS',
     location: 'El Jadida',
-    position: 'Stage Développeuse Full Stack & UI/UX',
-    date: 'Juillet – Septembre 2025',
-    missions: [
+    position: currentLanguage.value === 'fr' ? 'Stage Développeuse Full Stack & UI/UX' : 'Full Stack & UI/UX Developer Intern',
+    date: currentLanguage.value === 'fr' ? 'Juillet – Septembre 2025' : 'July – September 2025',
+    missions: currentLanguage.value === 'fr' ? [
       'Conception de l’architecture logicielle et des maquettes UI/UX pour l’application de gestion des réclamations clients.',
       'Développement de la partie Backend et modélisation des flux de données pour le suivi client.',
       'Développement de la partie Frontend intégrant un chatbot conversationnel pour l’automatisation des réponses.',
       'Intégration des API REST liant le Frontend et le Backend, avec réalisation des tests d’intégration.'
+    ] : [
+      'Designed the software architecture and UI/UX mockups for a customer complaint management application.',
+      'Developed the backend and modeled data flows for customer follow-up.',
+      'Built the frontend, including a conversational chatbot to automate responses.',
+      'Integrated REST APIs between the frontend and backend and performed integration testing.'
     ],
     technologies: ['React.js', 'Node.js', 'MongoDB', 'Git', 'GitHub', 'Scrum', 'Figma', 'UML']
   },
@@ -157,44 +167,55 @@ const experiences = [
     id: 3,
     company: 'OCP',
     location: 'El Jadida',
-    position: 'Stage Développeuse Full Stack & Data',
-    date: 'Avril – Juin 2024',
-    missions: [
+    position: currentLanguage.value === 'fr' ? 'Stage Développeuse Full Stack & Data' : 'Full Stack & Data Developer Intern',
+    date: currentLanguage.value === 'fr' ? 'Avril – Juin 2024' : 'April – June 2024',
+    missions: currentLanguage.value === 'fr' ? [
       'Développé la plateforme DIGIMINE de gestion des tâches administratives pour la transformation digitale.',
       'Conçu des requêtes SQL complexes et des dashboards interactifs (KPI) pour le pilotage décisionnel.'
+    ] : [
+      'Developed DIGIMINE, an administrative task management platform supporting digital transformation.',
+      'Built complex SQL queries and interactive KPI dashboards for decision-making.'
     ],
     technologies: ['Laravel', 'Bootstrap', 'Chart.js', 'phpMyAdmin']
   }
-]
+])
 
 const education = computed(() => [
   {
     id: 1,
-    year: '2025 — Présent',
-    degree: 'Cycle d\'ingénieur — Génie Informatique & IA',
+    year: currentLanguage.value === 'fr' ? '2025 — Présent' : '2025 — Present',
+    degree: currentLanguage.value === 'fr' ? 'Cycle d\'ingénieur — Génie Informatique & IA' : 'Engineering Degree — Computer Science & AI',
     school: 'ENSA Safi',
-    description: '4ᵉ année du cycle d\'ingénieur en Génie Informatique et Intelligence Artificielle.'
+    description: currentLanguage.value === 'fr'
+      ? '4ᵉ année du cycle d\'ingénieur en Génie Informatique et Intelligence Artificielle.'
+      : 'Fourth year of the engineering program in Computer Science and Artificial Intelligence.'
   },
   {
     id: 2,
     year: '2024 — 2025',
-    degree: 'Master Ingénierie Digitale pour les Métiers de la Santé',
+    degree: currentLanguage.value === 'fr' ? 'Master Ingénierie Digitale pour les Métiers de la Santé' : 'Master’s in Digital Engineering for Healthcare',
     school: 'ENSAM Casablanca',
-    description: 'Formation spécialisée dans l\'ingénierie digitale appliquée au secteur de la santé.'
+    description: currentLanguage.value === 'fr'
+      ? 'Formation spécialisée dans l\'ingénierie digitale appliquée au secteur de la santé.'
+      : 'Specialized training in digital engineering applied to healthcare.'
   },
   {
     id: 3,
     year: '2023 — 2024',
-    degree: 'Licence Système d\'Information & Transformation Digitale',
+    degree: currentLanguage.value === 'fr' ? 'Licence Système d\'Information & Transformation Digitale' : 'Bachelor’s in Information Systems & Digital Transformation',
     school: 'FST Settat',
-    description: 'Formation en systèmes d\'information et transformation digitale des entreprises.'
+    description: currentLanguage.value === 'fr'
+      ? 'Formation en systèmes d\'information et transformation digitale des entreprises.'
+      : 'Training in information systems and the digital transformation of businesses.'
   },
   {
     id: 4,
     year: '2021 — 2023',
-    degree: 'DEUST Mathématiques, Informatique & Physique',
+    degree: currentLanguage.value === 'fr' ? 'DEUST Mathématiques, Informatique & Physique' : 'DEUST in Mathematics, Computer Science & Physics',
     school: 'FST Settat',
-    description: 'Diplôme d\'études universitaires scientifiques et techniques.'
+    description: currentLanguage.value === 'fr'
+      ? 'Diplôme d\'études universitaires scientifiques et techniques.'
+      : 'University Diploma in Science and Technology.'
   }
 ])
 

@@ -250,6 +250,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
   // Actions
   const setLanguage = (lang: 'fr' | 'en') => {
     currentLanguage.value = lang
+    document.documentElement.lang = lang
   }
 
   const setLoading = (loading: boolean) => {

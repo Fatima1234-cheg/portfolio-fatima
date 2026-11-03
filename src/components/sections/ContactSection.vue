@@ -11,9 +11,13 @@
       <!-- Header de section (Style Light Theme) -->
       <div class="section-header">
         <span class="section-header__subtitle">06</span>
-        <h2 class="section-header__title">Me Contacter</h2>
+        <h2 class="section-header__title">
+          {{ currentLanguage === 'fr' ? 'Me contacter' : 'Get in touch' }}
+        </h2>
         <p class="section-header__description">
-          Une opportunité, un projet ou juste envie d'échanger ? Discutons-en.
+          {{ currentLanguage === 'fr'
+            ? 'Une opportunité, un projet ou juste envie d’échanger ? Discutons-en.'
+            : 'Have an opportunity, a project, or just want to connect? Let’s talk.' }}
         </p>
       </div>
 
@@ -23,7 +27,9 @@
         <div class="contact__info-card">
           <div class="info-header">
             <h3 class="info-name">Fatima Chegdani</h3>
-            <span class="info-role">Développeuse Full Stack</span>
+            <span class="info-role">
+              {{ currentLanguage === 'fr' ? 'Développeuse Full Stack' : 'Full Stack Developer' }}
+            </span>
           </div>
 
           <div class="info-list">
@@ -44,8 +50,8 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               </div>
               <div class="info-content">
-                <span class="info-label">TÉLÉPHONE</span>
-                <span class="info-value">0763722243</span>
+                <span class="info-label">{{ currentLanguage === 'fr' ? 'TÉLÉPHONE' : 'PHONE' }}</span>
+                <span class="info-value">+212 7 63 72 22 43</span>
               </div>
             </a>
 
@@ -55,8 +61,8 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               </div>
               <div class="info-content">
-                <span class="info-label">LOCALISATION</span>
-                <span class="info-value">Casablanca, Maroc</span>
+                <span class="info-label">{{ currentLanguage === 'fr' ? 'LOCALISATION' : 'LOCATION' }}</span>
+                <span class="info-value">{{ currentLanguage === 'fr' ? 'Casablanca, Maroc' : 'Casablanca, Morocco' }}</span>
               </div>
             </div>
           </div>
@@ -76,29 +82,33 @@
         <div class="contact__cv-wrapper">
           <!-- Étiquette décorative -->
           <div class="cv-badge">
-            <span class="dot"></span> MON CV
+            <span class="dot"></span> {{ currentLanguage === 'fr' ? 'MON CV' : 'MY RESUME' }}
           </div>
 
           <!-- La carte blanche inclinée -->
           <div class="cv-card">
             <div class="cv-header">
-              <span class="cv-label">CURRICULUM VITAE · 2026</span>
+              <span class="cv-label">{{ currentLanguage === 'fr' ? 'CURRICULUM VITAE · 2026' : 'RESUME · 2026' }}</span>
               <span class="cv-status">PDF</span>
             </div>
             
             <div class="cv-image-wrapper">
               <!-- ⚠️ REMPLACE "moncv.png" par le nom exact de ton image dans src/assets -->
               <img 
-                :src="cvImage" 
+                :src="currentLanguage === 'fr' ? cvImageFr : cvImageEn"
                 alt="CV Fatima Chegdani" 
                 class="cv-image" 
               />
             </div>
 
             <!-- Bouton de téléchargement visible sous l'image -->
-            <a href="/mon-cv.pdf" target="_blank" class="cv-download-btn">
+            <a
+              :href="currentLanguage === 'fr' ? cvImageFr : cvImageEn"
+              :download="currentLanguage === 'fr' ? 'CV-Fatima-Chegdani.jpg' : 'Resume-Fatima-Chegdani.jpg'"
+              class="cv-download-btn"
+            >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-              Télécharger le CV
+              {{ currentLanguage === 'fr' ? 'Télécharger le CV' : 'Download resume' }}
             </a>
           </div>
         </div>
@@ -109,11 +119,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-// ⚠️ IMPORTANT : Modifie le nom du fichier si ton image est en .jpg (ex: import cvImage from '@/assets/moncv.jpg')
-import cvImage from '@/assets/moncv.png' 
+import { ref, computed } from 'vue'
+import { usePortfolioStore } from '@/stores/portfolio'
+import cvImageFr from '@/assets/mon_cv_page-0001.jpg'
+import cvImageEn from '@/assets/Cv_Ang_page-0001.jpg'
 
 const sectionRef = ref<HTMLElement>()
+const store = usePortfolioStore()
+const currentLanguage = computed(() => store.currentLanguage)
 </script>
 
 <style lang="scss" scoped>

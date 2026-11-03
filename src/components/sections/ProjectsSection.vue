@@ -78,7 +78,9 @@
               @click="toggleDetails(project.id)"
               :class="{ 'is-open': expandedProject === project.id }"
             >
-              <span>{{ expandedProject === project.id ? 'Masquer les détails' : 'Découvrir le projet' }}</span>
+              <span>{{ expandedProject === project.id
+                ? (currentLanguage === 'fr' ? 'Masquer les détails' : 'Hide details')
+                : (currentLanguage === 'fr' ? 'Découvrir le projet' : 'Explore the project') }}</span>
               <div class="toggle-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </div>
@@ -88,19 +90,19 @@
             <Transition name="expand">
               <div v-if="expandedProject === project.id" class="project-card__details">
                 <div class="detail-group">
-                  <h4 class="detail-title">Contexte</h4>
+                  <h4 class="detail-title">{{ currentLanguage === 'fr' ? 'Contexte' : 'Context' }}</h4>
                   <p class="detail-text">{{ project.context }}</p>
                 </div>
                 
                 <div class="detail-group" v-if="project.objectives?.length">
-                  <h4 class="detail-title">Objectifs</h4>
+                  <h4 class="detail-title">{{ currentLanguage === 'fr' ? 'Objectifs' : 'Objectives' }}</h4>
                   <ul class="detail-list">
                     <li v-for="obj in project.objectives" :key="obj">{{ obj }}</li>
                   </ul>
                 </div>
 
                 <div class="detail-group" v-if="project.features?.length">
-                  <h4 class="detail-title">Fonctionnalités</h4>
+                  <h4 class="detail-title">{{ currentLanguage === 'fr' ? 'Fonctionnalités' : 'Features' }}</h4>
                   <ul class="detail-list">
                     <li v-for="feat in project.features" :key="feat">{{ feat }}</li>
                   </ul>
@@ -116,8 +118,13 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { projects } from '@/data/project'
+import { getLocalizedProjects } from '@/data/project'
 import type { Project } from '@/data/project'
+import { usePortfolioStore } from '@/stores/portfolio'
+
+const store = usePortfolioStore()
+const currentLanguage = computed(() => store.currentLanguage)
+const projects = computed(() => getLocalizedProjects(currentLanguage.value))
 
 // --- LOGIQUE GALERIE ---
 function allImages(project: Project): string[] {
@@ -133,7 +140,7 @@ function allImages(project: Project): string[] {
 
 const imagesByProject = computed<Record<string, string[]>>(() => {
   const map: Record<string, string[]> = {}
-  for (const project of projects) {
+  for (const project of projects.value) {
     map[project.id] = allImages(project)
   }
   return map
@@ -183,17 +190,9 @@ function toggleDetails(id: string) {
 
 // --- FILTRES ---
 const activeFilter = ref('all')
-const filters = [
-  { key: 'all', label: 'Tous' },
-  { key: 'web', label: 'Web' },
-  { key: 'mobile', label: 'Mobile' },
-  { key: 'data', label: 'Data' },
-  { key: 'ai', label: 'IA' }
-]
-
 const filteredProjects = computed(() => {
-  if (activeFilter.value === 'all') return projects
-  return projects.filter(p => {
+  if (activeFilter.value === 'all') return projects.value
+  return projects.value.filter(p => {
     const techString = p.tech.join(' ').toLowerCase()
     if (activeFilter.value === 'ai' && (techString.includes('ai') || techString.includes('flask') || techString.includes('ml'))) return true
     if (activeFilter.value === 'data' && (techString.includes('mysql') || techString.includes('mongodb') || techString.includes('data'))) return true
@@ -203,7 +202,6 @@ const filteredProjects = computed(() => {
   })
 })
 
-const currentLanguage = ref('fr')
 </script>
 
 <style lang="scss" scoped>

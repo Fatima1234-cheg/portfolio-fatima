@@ -13,6 +13,8 @@ export interface Project {
   link?: string
 }
 
+type ProjectCopy = Pick<Project, 'subtitle' | 'description' | 'context' | 'objectives' | 'features'>
+
 /* =========================================
    HELPERS
    ========================================= */
@@ -268,7 +270,7 @@ export const projects: Project[] = [
   {
     id: 'presence-ensa',
     year: '2025',
-    title: 'Présence ENSA Safi',
+    title: 'AgoraCampus',
     subtitle: 'Gestion automatique multi-rôles',
     description:
       "Une application web de gestion de présence pour l'ENSA Safi, utilisant QR code, NFC et reconnaissance faciale.",
@@ -305,7 +307,7 @@ export const projects: Project[] = [
   {
     id: 'pfe',
     year: '2025',
-    title: 'Gestion des PFE',
+    title: 'EduFlow',
     subtitle: "Recommandation & suivi de projets de fin d'études",
     description:
       "Une plateforme qui accompagne les étudiants et encadrants tout au long du cycle PFE, de la proposition de sujet à la soutenance.",
@@ -335,3 +337,124 @@ export const projects: Project[] = [
     ],
   },
 ]
+
+const englishProjectCopy: Record<string, ProjectCopy> = {
+  fellah: {
+    subtitle: 'All-in-one platform for farmers',
+    description: 'An intelligent platform that helps farmers manage their crops using AI, IoT, and a voice assistant.',
+    context: 'Academic project completed at ENSA Safi. The goal was to design a complete solution to digitize Morocco’s agricultural sector by combining yield prediction, monitoring, computer vision, and NLP.',
+    objectives: [
+      'Predict crop yields using historical data',
+      'Monitor soil and air conditions in real time through IoT',
+      'Automatically diagnose plant diseases',
+      'Provide a voice assistant in Darija and French',
+    ],
+    features: [
+      'Dashboard with forecasts and personalized recommendations',
+      'IoT monitoring via MQTT (temperature, humidity, pH)',
+      'CNN-based disease detection (MobileNetV2)',
+      'Voice assistant using Llama 3.1, Whisper, and gTTS',
+    ],
+  },
+  'smart-safi': {
+    subtitle: 'Smart City platform for Safi',
+    description: 'A connected urban platform that monitors street lighting, waste management, smart irrigation, and air and water quality in real time to support a sustainable city.',
+    context: 'Academic project completed at ENSA Safi for the Smart City course. Safi faces practical environmental challenges, including inefficient waste management, pollution, water waste, and high energy consumption. The goal was to design an integrated, affordable IoT and cloud solution for local authorities.',
+    objectives: [
+      'Optimize street-lighting energy consumption',
+      'Automate waste collection based on bin fill levels',
+      'Monitor air and water quality in real time',
+      'Manage green-space irrigation based on soil moisture',
+      'Centralize monitoring in a single dashboard',
+    ],
+    features: [
+      'Centralized dashboard with an interactive map and live indicators',
+      'Smart lighting with day/night and presence detection',
+      'Connected waste bins with fill alerts and optimized collection routes',
+      'Water quality monitoring: pH, turbidity, and conductivity',
+      'Air quality monitoring: PM2.5, PM10, SO2, CO, and MQ-135',
+      'Smart irrigation based on soil moisture and temperature',
+      'Driver management by geographic area',
+      'Multi-role interfaces for administrators and drivers',
+      'Real-time IoT simulation (ESP32 + MQTT)',
+      'Automated alerts and configurable thresholds',
+    ],
+  },
+  breastcare: {
+    subtitle: 'Breast ultrasound analysis',
+    description: 'A medical application that helps radiologists detect and segment suspicious masses in breast ultrasound images.',
+    context: 'Medical AI module project. The goal was to automate early breast cancer detection using deep neural networks (ResNet + U-Net).',
+    objectives: [
+      'Automatically detect suspicious masses',
+      'Precisely segment tumor boundaries',
+      'Provide a confidence score to the physician',
+      'Make patient follow-up easier',
+    ],
+    features: [
+      'Upload and preview ultrasound images',
+      'AI pipeline: ResNet classification and U-Net segmentation',
+      'Physician interface with analysis history',
+      'PDF report export',
+    ],
+  },
+  medequip: {
+    subtitle: 'CMMS for biomedical equipment',
+    description: 'A computerized maintenance management platform for tracking and servicing hospital biomedical equipment.',
+    context: 'Academic project based on a hospital setting. It addresses biomedical departments’ needs to track, schedule, and anticipate equipment maintenance.',
+    objectives: [
+      'Centralize equipment inventory',
+      'Schedule preventive maintenance',
+      'Track corrective maintenance work',
+      'Generate reports and statistics',
+    ],
+    features: [
+      'Complete equipment fleet management',
+      'Maintenance calendar with alerts',
+      'Service history for each device',
+      'Dashboard with key indicators',
+    ],
+  },
+  'presence-ensa': {
+    subtitle: 'Automated multi-role attendance management',
+    description: 'An attendance management web application for ENSA Safi using QR codes, NFC, and facial recognition.',
+    context: 'An internal ENSA Safi project designed to replace paper attendance sheets with a reliable, automated system for students, teachers, and administrators.',
+    objectives: [
+      'Automate student attendance tracking',
+      'Provide teachers with a course management area',
+      'Give administrators an overview of attendance',
+      'Prevent fraud using biometric verification',
+    ],
+    features: [
+      'Attendance tracking by QR code on mobile',
+      'NFC attendance tracking',
+      'Real-time facial recognition',
+      'Role-based dashboards for students, teachers, and administrators',
+    ],
+  },
+  pfe: {
+    subtitle: 'Final-year project recommendations & tracking',
+    description: 'A platform that supports students and supervisors throughout the final-year project cycle, from topic proposal to defense.',
+    context: 'Academic project at ENSA Safi. The goal was to digitize and simplify final-year project management while adding intelligent features such as recommendations and plagiarism detection.',
+    objectives: [
+      'Recommend topics suited to each student’s profile',
+      'Automatically assign supervisors',
+      'Detect plagiarism in reports',
+      'Track progress with a Kanban board',
+    ],
+    features: [
+      'Project topic recommendation engine',
+      'Automatic supervisor assignment',
+      'Plagiarism detection',
+      'Kanban project tracking',
+    ],
+  },
+}
+
+export function getLocalizedProjects(language: 'fr' | 'en'): Project[] {
+  if (language === 'fr') return projects
+
+  return projects.map((project) => ({
+    ...project,
+    ...englishProjectCopy[project.id],
+  }))
+}

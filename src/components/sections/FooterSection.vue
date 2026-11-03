@@ -6,16 +6,16 @@
     <div class="footer__container">
       <!-- Bloc Call To Action -->
       <div class="footer__cta">
-        <p class="footer__kicker">UNE OPPORTUNITÉ ?</p>
+        <p class="footer__kicker">{{ currentLanguage === 'fr' ? 'UNE OPPORTUNITÉ ?' : 'AN OPPORTUNITY?' }}</p>
         
         <h2 class="footer__title">
-          Construisons ensemble <br class="footer__br" />
-          <span>la prochaine solution.</span>
+          {{ currentLanguage === 'fr' ? 'Construisons ensemble' : 'Let’s build' }} <br class="footer__br" />
+          <span>{{ currentLanguage === 'fr' ? 'la prochaine solution.' : 'the next solution together.' }}</span>
         </h2>
 
         <!-- ⬇️ Bouton modifié pour faire défiler vers #contact ⬇️ -->
         <a href="#contact" @click.prevent="scrollToSection('contact')" class="footer__button">
-          Me contacter
+          {{ currentLanguage === 'fr' ? 'Me contacter' : 'Get in touch' }}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M7 17L17 7M17 7H7M17 7V17" />
           </svg>
@@ -25,7 +25,8 @@
       <!-- Ligne de bas de page (Copyright & Réseaux) -->
       <div class="footer__bottom">
         <p class="footer__copyright">
-          © {{ new Date().getFullYear() }} Fatima Chegdani. Tous droits réservés.
+          © {{ new Date().getFullYear() }} Fatima Chegdani.
+          {{ currentLanguage === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.' }}
         </p>
         
         <div class="footer__social">
@@ -39,6 +40,12 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { usePortfolioStore } from '@/stores/portfolio'
+
+const store = usePortfolioStore()
+const currentLanguage = computed(() => store.currentLanguage)
+
 // ⬇️ Fonction pour scroller en douceur vers la section contact
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId)
