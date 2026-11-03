@@ -13,7 +13,7 @@ Portfolio professionnel moderne et interactif, développé avec Vue.js 3, TypeSc
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Vite](https://img.shields.io/badge/Vite-Build-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev)
 [![GSAP](https://img.shields.io/badge/GSAP-Animations-88CE02?style=flat-square&logo=greensock&logoColor=white)](https://gsap.com)
-[![License](https://img.shields.io/badge/Licence-MIT-22D3EE?style=flat-square)](./LICENSE)
+
 
 </div>
 
@@ -46,13 +46,13 @@ Ce portfolio présente mon parcours, mes projets et mes compétences à travers 
 
 ### Design et expérience utilisateur
 
-| | Fonctionnalité | Description |
-|---|---|---|
-| 🎨 | Thème sombre | Design moderne et cohérent |
-| 🖱️ | Curseur personnalisé | Effets de survol interactifs |
-| 🌊 | Défilement fluide | Smooth scrolling avec Lenis |
-| 📱 | Responsive | Adapté mobile, tablette et desktop |
-| 🌐 | Multilingue | Français et anglais |
+| Fonctionnalité | Description |
+|---|---|
+ | Thème sombre | Design moderne et cohérent |
+|Curseur personnalisé | Effets de survol interactifs |
+ |Défilement fluide | Smooth scrolling avec Lenis |
+|Responsive | Adapté mobile, tablette et desktop |
+ |Multilingue | Français et anglais |
 
 ### Animations
 
@@ -158,11 +158,7 @@ Le contenu est centralisé dans le store Pinia `src/stores/portfolio.ts` : proje
 
 ---
 
-## Licence
 
-Distribué sous licence **MIT**. Voir le fichier [LICENSE](./LICENSE) pour plus de détails.
-
----
 
 ## Contact
 
